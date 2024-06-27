@@ -1,1 +1,1 @@
-# Pylogentic_tree_for_SSU
+# Pylogentic tree For  SSU (Small Sub unit) 16s rRNA sequences
