@@ -8,7 +8,7 @@ The aim of this project is to construct a phylogenetic tree for SSU (16s rRNA) s
 
 ## Workflow
 
-1. **Data Preparation**: Collect and preprocess 16s rRNA sequences.
+1. **Data Preparation**: Collect and preprocess  SSU 16s rRNA sequenc.
 2. **Sequence Alignment**: Align sequences using MAFFT.
 3. **Phylogenetic Analysis**: Build a phylogenetic tree using RAxML.
 4. **Merging and Filtering**: Merge and filter sequences using Python.
