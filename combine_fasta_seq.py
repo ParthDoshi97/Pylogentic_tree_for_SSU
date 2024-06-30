@@ -1,16 +1,7 @@
+import sys
 import os
 from Bio import SeqIO
 
-# Get the current working directory
-current_dir = os.getcwd()
-print(f"Current working directory: {current_dir}")
-
-# Set the working directory to the 'Data' subdirectory within the current directory
-desired_path = os.path.join(current_dir, "Data")
-os.chdir(desired_path)
-
-
-# Function to Fasta files and Merge them
 def find_fasta_files(directory):
     """Find all FASTA files in the specified directory and its subdirectories."""
     fasta_files = []
@@ -20,7 +11,7 @@ def find_fasta_files(directory):
                 fasta_files.append(os.path.join(root, file))
     return fasta_files
 
-def combine_fasta_files(output_file, *directories):
+def combine_fasta_files(output_file, directories):
     """Combine all FASTA files from specified directories into a single output file."""
     with open(output_file, 'w') as outfile:
         for directory in directories:
@@ -30,11 +21,15 @@ def combine_fasta_files(output_file, *directories):
                     for record in SeqIO.parse(infile, 'fasta'):
                         SeqIO.write(record, outfile, 'fasta')
 
-# Specify the directories containing the FASTA files
-directories = ["Egypt SSU", "Lebanon SSU", "Saudi SSU", "Staph Jordan SSU"]
+if __name__ == "__main__":
+    # Get directories and output file from command line arguments
+    output_file = sys.argv[1]
+    directories = sys.argv[2:]
 
-# Specify the output file
-output_file = "combined.fasta"
-
-# Combine the FASTA files
-combine_fasta_files(output_file, *directories)
+    # Check if any directories were entered
+    if not directories:
+        print("No directories were entered. Exiting.")
+    else:
+        # Combine the FASTA files
+        combine_fasta_files(output_file, directories)
+        print(f"FASTA files have been combined into {output_file}")
