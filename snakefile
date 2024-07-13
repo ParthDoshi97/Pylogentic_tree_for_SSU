@@ -64,9 +64,12 @@ rule Phylogenetic_tree:
         "Results/RAxML_bestTree.nwk"
     shell:
         """
-        # Generate the phylogenetic tree using RAxML
-        /home/ubuntu/standard-RAxML/./raxmlHPC -s {input} -n bestTree -m GTRGAMMA -p 12345 -x 12345 -# 1000
+        # Generate bootstrap replicates
+        /home/ubuntu/standard-RAxML/./raxmlHPC -s {input} -n bootstraps -m GTRGAMMA -p 12345 -x 12345 -# 1000 -w /home/ubuntu/Pylogentic_tree_for_SSU/Results/
         
-        # Rename the output to Newick format
-        mv RAxML_bootstrap.bestTree {output}
+        # Generate the best tree with branch lengths using the bootstrap replicates
+        /home/ubuntu/standard-RAxML/./raxmlHPC -s {input} -n bestTree -m GTRGAMMA -p 12345 -f d -t /home/ubuntu/Pylogentic_tree_for_SSU/Results/RAxML_bootstrap.bootstraps -w /home/ubuntu/Pylogentic_tree_for_SSU/Results/
+        
+        # Rename the best tree output to Newick format
+        mv Results/RAxML_bestTree.bestTree {output}
         """
