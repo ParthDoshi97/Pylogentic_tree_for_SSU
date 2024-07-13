@@ -22,8 +22,3 @@ The aim of this project is to construct a phylogenetic tree for SSU (16s rRNA) s
 - **Biopython**: For handling sequences in Python 
 - **Snakemake**: For workflow automation
 
-## License
-
-This project is intended for internal use only. All rights reserved. Unauthorized distribution or commercial use is prohibited.
-
-
